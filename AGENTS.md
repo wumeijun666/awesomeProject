@@ -2,7 +2,11 @@
 
 ## 项目结构与模块组织
 
-本仓库是 Go 模块 `awesomeProject`。入口程序位于 `main.go`。Ent 数据模型定义放在 `ent/schema/`，例如 `ent/schema/todo.go`；`ent/` 下其余大部分文件由 Ent 生成，包含客户端、查询构造器、迁移和实体代码。修改数据模型时，应编辑 schema 后重新生成代码，不要直接修改带有 `Code generated ... DO NOT EDIT.` 标记的文件。当前仓库没有独立的资源目录或测试目录。
+本仓库是 Go 模块 `awesomeProject`。入口程序位于 `main.go`。Ent 数据模型定义放在 `ent/schema/`，例如 `ent/schema/todo.go`；`ent/` 下其余大部分文件由 Ent 生成，包含客户端、查询构造器、迁移和实体代码。项目文档及开发规范位于 `docs/`。修改数据模型时，应编辑 schema 后重新生成代码，不要直接修改带有 `Code generated ... DO NOT EDIT.` 标记的文件。当前仓库没有独立的资源目录或测试目录。
+
+## 开发规范（必须遵循）
+
+开始分析、设计或修改 Go 代码前，必须先完整阅读 `docs/go_development_spec.md`。所有新增及修改的手写 Go 代码必须遵循其中的项目结构、命名、注释、分层、错误处理、日志和配置规范；自动生成代码及第三方代码不适用。开发完成后，应按该文档逐项自查，并执行本指南列出的格式化、测试和静态检查命令。若规范与用户在当前任务中的明确要求冲突，以用户要求为准，并在交付说明中指出差异。
 
 ## 构建、测试与本地开发
 
@@ -28,4 +32,4 @@ go generate ./ent
 
 ## 提交与拉取请求
 
-当前工作目录未包含 Git 历史，无法归纳既有约定。建议使用简洁、祈使语气的提交标题，可采用 `feat: add todo fields`、`fix: handle empty input` 等格式。拉取请求应说明变更目的、主要实现和验证命令；关联相关 issue。若 schema 有变化，应同时提交 schema 与重新生成的 Ent 文件，并明确迁移影响。
+现有历史采用 Conventional Commits 风格。提交标题应简洁并使用祈使语气，例如 `feat: add todo fields`、`fix: handle empty input`。拉取请求应说明变更目的、主要实现和验证命令，并关联相关 issue。若 schema 有变化，应同时提交 schema 与重新生成的 Ent 文件，并明确迁移影响。
