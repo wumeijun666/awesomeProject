@@ -4,6 +4,7 @@ package ent
 
 import (
 	"awesomeProject/ent/todo"
+	"awesomeProject/ent/user"
 	"context"
 	"errors"
 	"fmt"
@@ -74,6 +75,7 @@ func checkColumn(t, c string) error {
 	initCheck.Do(func() {
 		columnCheck = sql.NewColumnCheck(map[string]func(string) bool{
 			todo.Table: todo.ValidColumn,
+			user.Table: user.ValidColumn,
 		})
 	})
 	return columnCheck(t, c)
